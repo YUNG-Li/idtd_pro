@@ -5,7 +5,7 @@ import numpy as np
 import os
 import time
 import json
-from base_pro_1 import *
+from idtd_fix import *
 from pyasn1_modules.rfc7508 import Algorithm
 
 def calculate_time_score(time_in_ms):
@@ -88,13 +88,7 @@ def main():
             if image is not None:
                 start_time = time.time()  # 记录开始时间               
 
-
-
-                frame = image
-                smoothed_frame = smooth_image(frame)
-                result = move_detect(smoothed_frame)
-                min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
-                center = max_loc
+                center = detect_motion(image)
 
 
                 # 保存绘制框的中心坐标到txt文件
